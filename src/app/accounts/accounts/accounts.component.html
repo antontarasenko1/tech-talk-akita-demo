@@ -1,0 +1,8 @@
+<div class="accounts-container" *ngIf="accounts?.length">
+  <h3>Accounts</h3>
+  <ul class="collection">
+    <li class="collection-item" *ngFor="let account of accounts">
+      <app-account [account]="account" (editName)="editName.emit($event)"></app-account>
+    </li>
+  </ul>
+</div>

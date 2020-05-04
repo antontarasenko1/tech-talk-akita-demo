@@ -1,0 +1,33 @@
+<h3>Create Account</h3>
+<form [formGroup]="accountForm">
+  <div class="input-field">
+    <input
+      required
+      formControlName="name"
+      type="text"
+      class="form-control"
+      placeholder="Account name">
+  </div>
+  <div class="input-field">
+    <select class="browser-default" formControlName="currency" required>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="BTC">BTC</option>
+      <option value="LTC">LTC</option>
+      <option value="ETH">ETH</option>
+    </select>
+  </div>
+  <a class="waves-effect btn" (click)="creatAccount()">Create Account</a>
+</form>
+
+<ng-container *ngIf="this.accountsQuery.accounts$ | async as accounts">
+  <app-accounts
+    [accounts]="accounts"
+    (delete)="delete($event)"
+    (editName)="editName($event)">
+  </app-accounts>
+
+  <a *ngIf="accounts?.length"
+     class="waves-effect btn"
+     (click)="resetAccounts()">Reset</a>
+</ng-container>
+

@@ -1,0 +1,26 @@
+<div class="account-item">
+  <span *ngIf="!editFormOpened; else editForm">
+    <span> Name: {{ account.name }}</span><br>
+    <span> Currency: {{ account.currency }}</span><br>
+    <span> Balance: {{ account.balance }}</span><br>
+  </span>
+  <ng-template #editForm>
+    <form [formGroup]="accountEditForm">
+      <div class="input-field">
+        <input
+          (keydown.enter)="edit()"
+          required
+          formControlName="name"
+          type="text"
+          class="form-control"
+          placeholder="New name">
+      </div>
+    </form>
+  </ng-template>
+  <span class="icons-container">
+    <i class="material-icons edit"
+       (click)="toggleEditForm()">edit</i>
+    <i class="material-icons delete"
+       (click)="delete.emit(account.id)">delete</i>
+  </span>
+</div>
